@@ -1,0 +1,47 @@
+# 1. INITIALIZATION
+numbers = [10, 20, 30, 40, 50]
+print(f"Initial list: {numbers}")
+
+# 2. ADDING ELEMENTS
+numbers.append(60)           # Adds 60 to the end
+numbers.extend([70, 80])     # Appends multiple items
+numbers.insert(2, 25)        # Inserts 25 at index 2
+print(f"After additions: {numbers}")
+
+# 3. REMOVING ELEMENTS
+last_val = numbers.pop()     # Removes and returns last item (80)
+numbers.remove(10)           # Removes first occurrence of value 10
+numbers.pop(1)               # Removes item at index 1 (25)
+print(f"After removals: {numbers}")
+
+# 4. SEARCHING & COUNTING
+idx = numbers.index(40)      # Finds index of value 40
+cnt = numbers.count(30)      # Counts occurrences of 30
+print(f"Index of 40: {idx}, Count of 30: {cnt}")
+
+# 5. ORDERING
+numbers.reverse()            # Reverses order in place
+print(f"Reversed: {numbers}")
+numbers.sort()               # Sorts ascending in place
+print(f"Sorted: {numbers}")
+
+# 6. GLOBAL FUNCTIONS (Works with lists)
+print(f"Length: {len(numbers)}") # Total items
+print(f"Max: {max(numbers)}")    # Largest value
+print(f"Min: {min(numbers)}")    # Smallest value
+print(f"Sum: {sum(numbers)}")    # Total of all numbers
+
+# 7. LOGIC FUNCTIONS
+# any() is True if at least one item is True (non-zero)
+# all() is True only if every item is True (non-zero)
+print(f"Are all non-zero? {all(numbers)}") 
+
+# 8. COPYING & CLEARING
+nums_backup = numbers.copy() # Creates a separate shallow copy
+numbers.clear()              # Removes all items
+print(f"Cleared original: {numbers}")
+print(f"Backup copy preserved: {nums_backup}")
+
+# 9. DELETING BY SLICE
+del nums_backup[0:2]         # Removes first two elements
+print(f"Backup after deleting slice [0:2]: {nums_backup}")
