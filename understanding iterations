@@ -1,0 +1,57 @@
+numbers = [10, 20, 30, 40, 50]
+
+# 1. Standard For Loop (Most common/Pythonic)
+print("--- Standard For Loop ---")
+for num in numbers:
+    print(num, end=" ")
+print("\n")
+
+# 2. Enumerate (Access both index and value)
+print("--- Enumerate (Index & Value) ---")
+for index, value in enumerate(numbers):
+    print(f"Index {index}: Value {value}")
+print()
+
+# 3. While Loop (Manual indexing)
+print("--- While Loop ---")
+i = 0
+while i < len(numbers):
+    print(f"Item {i+1}: {numbers[i]}")
+    i += 1
+print()
+
+# 4. List Comprehension (Concise transformation)
+print("--- List Comprehension (Squaring numbers) ---")
+squared = [n**2 for n in numbers]
+print(squared)
+print()
+
+# 5. Using range() with len() (Index-based iteration)
+print("--- Range and Len ---")
+for i in range(len(numbers)):
+    print(f"Position {i} holds {numbers[i]}")
+print()
+
+# 6. Iterating in Reverse
+print("--- Reversed Iteration ---")
+for num in reversed(numbers):
+    print(num, end=" ")
+print("\n")
+
+# 7. Map Function (Functional approach)
+print("--- Map (Convert numbers to strings) ---")
+str_nums = list(map(str, numbers))
+print(str_nums)
+print()
+
+# 8. Zip (Iterating over multiple lists simultaneously)
+print("--- Zip (Two lists at once) ---")
+labels = ['A', 'B', 'C', 'D', 'E']
+for label, num in zip(labels, numbers):
+    print(f"{label} -> {num}")
+
+# 9. Manual Iterator (Using iter and next)
+print("\n--- Manual Iterator ---")
+it = iter(numbers)
+print(next(it)) # 10
+print(next(it)) # 20
