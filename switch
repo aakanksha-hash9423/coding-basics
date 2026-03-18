@@ -1,0 +1,13 @@
+def get_status(code):
+    match code:
+        case 200:
+            return "OK"
+        case 404:
+            return "Not Found"
+        case 500:
+            return "Server Error"
+        case _: # The underscore acts as the 'default' case
+            return "Unknown Status"
+
+print(get_status(404))  # Output: Not Found
+print(get_status(999))  # Output: Unknown Status
