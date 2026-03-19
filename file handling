@@ -1,0 +1,21 @@
+import os
+
+filename = "example.txt"
+
+# 1. Create and Write to a file
+with open(filename, "w", encoding="utf-8") as f:
+    f.write("Hello, this is a file management test.\n")
+
+# 2. Read from the file
+if os.path.exists(filename):
+    with open(filename, "r") as f:
+        print("File Content:", f.read())
+
+# 3. Rename the file
+os.rename(filename, "managed_file.txt")
+
+# 4. List files in current directory
+print("Files in directory:", os.listdir('.'))
+
+# 5. Cleanup: Delete the file
+os.remove("managed_file.txt")
