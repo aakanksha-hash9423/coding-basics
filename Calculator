@@ -1,0 +1,16 @@
+# Function to perform calculation
+def calculate(n1, n2, op):
+    if op == '+': return n1 + n2
+    if op == '-': return n1 - n2
+    if op == '*': return n1 * n2
+    if op == '/': return n1 / n2 if n2 != 0 else "Error"
+    return "Invalid Op"
+
+# Simple input/output loop
+try:
+    num1 = float(input("Enter first number: "))
+    op = input("Enter operator (+, -, *, /): ")
+    num2 = float(input("Enter second number: "))
+    print("Result:", calculate(num1, num2, op))
+except ValueError:
+    print("Invalid Input")
