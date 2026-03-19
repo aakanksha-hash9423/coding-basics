@@ -1,0 +1,38 @@
+import math
+
+def calculate_areas():
+    print("--- Geometric Area Calculator ---")
+    
+    # Circle
+    radius = float(input("Enter radius of circle: "))
+    circle_area = math.pi * (radius ** 2)
+    print(f"Area of Circle: {circle_area:.2f}")
+
+    # Rectangle
+    length = float(input("Enter length of rectangle: "))
+    width = float(input("Enter width of rectangle: "))
+    print(f"Area of Rectangle: {length * width:.2f}")
+
+    # Square
+    side = float(input("Enter side of square: "))
+    print(f"Area of Square: {side * side:.2f}")
+
+    # Triangle
+    base = float(input("Enter base of triangle: "))
+    height = float(input("Enter height of triangle: "))
+    print(f"Area of Triangle: {0.5 * base * height:.2f}")
+
+    # Parallelogram
+    p_base = float(input("Enter base of parallelogram: "))
+    p_height = float(input("Enter height of parallelogram: "))
+    print(f"Area of Parallelogram: {p_base * p_height:.2f}")
+
+    # Trapezoid
+    a = float(input("Enter parallel side 1 of trapezoid: "))
+    b = float(input("Enter parallel side 2 of trapezoid: "))
+    t_height = float(input("Enter height of trapezoid: "))
+    print(f"Area of Trapezoid: {(a + b) * t_height / 2:.2f}")
+
+# Run the calculator
+if __name__ == "__main__":
+    calculate_areas()
