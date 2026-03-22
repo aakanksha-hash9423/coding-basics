@@ -1,0 +1,18 @@
+import matplotlib.pyplot as plt
+
+# Data
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+
+# Plotting
+plt.plot(x, y, color='blue', marker='o', linestyle='-', label='Data Line')
+
+# Customization
+plt.title("Simple Line Plot")
+plt.xlabel("X-axis Label")
+plt.ylabel("Y-axis Label")
+plt.legend()
+plt.grid(True)
+
+# Display the graph
+plt.show()
