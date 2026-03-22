@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+
+# 1. Line Plot (Trends over time/categories)
+plt.plot([1, 2, 3, 4], [1, 4, 9, 16], label='Line', color='blue')
+
+# 2. Bar Chart (Categorical comparisons)
+plt.bar(['A', 'B', 'C'], [5, 10, 7], color='green')
+
+# 3. Scatter Plot (Relationship between variables)
+plt.scatter([1, 2, 3, 4], [10, 20, 25, 30], color='red')
+
+# 4. Histogram (Frequency distribution)
+data = [1, 2, 2, 3, 3, 3, 4, 4, 5]
+plt.hist(data, bins=5, color='purple', edgecolor='black')
+
+# 5. Pie Chart (Proportions of a whole)
+plt.pie([25, 35, 20, 20], labels=['Q1', 'Q2', 'Q3', 'Q4'], autopct='%1.1f%%')
+
+# Decoration (Apply to any graph)
+plt.title("Sample Graph")
+plt.xlabel("X-Axis")
+plt.ylabel("Y-Axis")
+plt.legend()
+plt.show()
