@@ -1,0 +1,58 @@
+import os
+
+# Initialize the board
+board = [' ' for _ in range(9)]
+
+def print_board():
+    """Prints the current board layout."""
+    print(f"\n {board[0]} | {board[1]} | {board[2]} ")
+    print("---+---+---")
+    print(f" {board[3]} | {board[4]} | {board[5]} ")
+    print("---+---+---")
+    print(f" {board[6]} | {board[7]} | {board[8]} \n")
+
+def check_win():
+    """Checks if a player has won."""
+    win_conditions = [(0,1,2), (3,4,5), (6,7,8), # rows
+                      (0,3,6), (1,4,7), (2,5,8), # columns
+                      (0,4,8), (2,4,6)]          # diagonals
+    for a, b, c in win_conditions:
+        if board[a] == board[b] == board[c] and board[a] != ' ':
+            return board[a]
+    if ' ' not in board:
+        return 'Tie'
+    return None
+
+def play_game():
+    current_player = 'X'
+    game_over = False
+    
+    while not game_over:
+        print_board()
+        move = input(f"Player {current_player}, choose position (1-9): ")
+        
+        # Input validation
+        if not move.isdigit() or int(move) < 1 or int(move) > 9:
+            print("Invalid move. Try again.")
+            continue
+        
+        idx = int(move) - 1
+        if board[idx] != ' ':
+            print("Position occupied. Try again.")
+            continue
+            
+        board[idx] = current_player
+        
+        winner = check_win()
+        if winner:
+            print_board()
+            if winner == 'Tie':
+                print("It's a Tie!\n")
+            else:
+                print(f"Player {winner} Wins!\n")
+            game_over = True
+        else:
+            current_player = 'O' if current_player == 'X' else 'X'
+
+if __name__ == "__main__":
+    play_game()
