@@ -1,0 +1,16 @@
+import chess
+
+# Initialize a new board
+board = chess.Board()
+
+# Print the board in ASCII format
+print(board)
+
+# Check if a move is legal and make it
+move = chess.Move.from_uci("e2e4")
+if move in board.legal_moves:
+    board.push(move)
+
+# Check game status
+print(f"Is Checkmate: {board.is_checkmate()}")
+print(board)
