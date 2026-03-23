@@ -1,0 +1,28 @@
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, OrdinalEncoder
+
+# Sample Data
+data = {
+    'Color': ['Red', 'Blue', 'Green', 'Blue'],        # Nominal (no order)
+    'Size': ['Small', 'Medium', 'Large', 'Medium'],   # Ordinal (has order)
+    'Target': ['Yes', 'No', 'Yes', 'No']              # Target labels
+}
+df = pd.DataFrame(data)
+
+# 1. One-Hot Encoding (for Nominal data like 'Color')
+# Creates a new binary column for each unique category
+df_ohe = pd.get_dummies(df, columns=['Color'], prefix='color')
+
+# 2. Ordinal Encoding (for Ordinal data like 'Size')
+# Maintains the natural hierarchy (Small < Medium < Large)
+size_order = [['Small', 'Medium', 'Large']]
+ord_enc = OrdinalEncoder(categories=size_order)
+df['size_encoded'] = ord_enc.fit_transform(df[['Size']])
+
+# 3. Label Encoding (typically for the Target variable)
+# Maps each category to a unique integer (0, 1, 2...)
+label_enc = LabelEncoder()
+df['target_encoded'] = label_enc.fit_transform(df['Target'])
+
+print(df_ohe)
+print("\n", df[['Size', 'size_encoded', 'Target', 'target_encoded']])
