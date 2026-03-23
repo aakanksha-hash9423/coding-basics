@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+from scipy import stats
+
+# Sample Dataset
+data = [10, 20, 20, 30, 40, 50, 100]
+df = pd.DataFrame(data, columns=['values'])
+
+# 1. Central Tendency (The "Middle")
+mean   = df['values'].mean()      # Average of all numbers
+median = df['values'].median()    # Exact middle value when sorted
+mode   = df['values'].mode()[0]   # Most frequent value
+
+# 2. Dispersion (The "Spread")
+variance = df['values'].var()     # Average squared deviation from mean
+std_dev  = df['values'].std()     # Square root of variance (typical spread)
+range_v  = df['values'].max() - df['values'].min()
+iqr      = df['values'].quantile(0.75) - df['values'].quantile(0.25) # Mid-50% spread
+
+# 3. Shape & Distribution
+skew     = df['values'].skew()    # Symmetry (positive = right tail)
+kurt     = df['values'].kurt()    # "Tailedness" or peakiness
+p90      = df['values'].quantile(0.90) # Value below which 90% of data falls
+
+# Print Summary
+print(f"Mean: {mean:.2f} | Median: {median} | Mode: {mode}")
+print(f"Std Dev: {std_dev:.2f} | Variance: {variance:.2f}")
+print(f"Skewness: {skew:.2f} | Kurtosis: {kurt:.2f}")
