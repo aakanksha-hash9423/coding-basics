@@ -1,0 +1,34 @@
+# --- NUMERIC TYPES ---
+my_int = 42                       # <class 'int'>: Whole numbers
+my_float = 3.14                   # <class 'float'>: Decimal/real numbers
+my_complex = 2 + 3j               # <class 'complex'>: Real + imaginary parts
+
+# --- TEXT TYPE ---
+my_str = "Hello World"            # <class 'str'>: Sequence of characters
+
+# --- SEQUENCE TYPES ---
+my_list = [1, "apple", 3.14]      # <class 'list'>: Mutable ordered collection
+my_tuple = (1, "banana", 3.14)    # <class 'tuple'>: Immutable ordered collection
+my_range = range(6)               # <class 'range'>: Immutable sequence of numbers
+
+# --- MAPPING TYPE ---
+my_dict = {"name": "AI", "age": 5} # <class 'dict'>: Key-value pairs
+
+# --- SET TYPES ---
+my_set = {"apple", "banana"}      # <class 'set'>: Unordered collection of unique items
+my_frozenset = frozenset([1, 2])  # <class 'frozenset'>: Immutable version of a set
+
+# --- BOOLEAN TYPE ---
+my_bool = True                    # <class 'bool'>: Represents True or False
+
+# --- BINARY TYPES ---
+my_bytes = b"Hello"               # <class 'bytes'>: Immutable sequence of bytes
+my_bytearray = bytearray(5)       # <class 'bytearray'>: Mutable sequence of bytes
+my_memoryview = memoryview(my_bytes) # <class 'memoryview'>: Access buffer protocol memory
+
+# --- NONE TYPE ---
+my_none = None                    # <class 'NoneType'>: Represents "no value"
+
+# --- VALIDATION ---
+# Use the type() function to verify any variable's data type
+print(f"Value: {my_int}, Type: {type(my_int)}")
