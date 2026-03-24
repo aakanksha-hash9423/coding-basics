@@ -1,0 +1,31 @@
+import calendar
+from datetime import datetime
+import pytz
+
+def display_calendar_and_time(timezone_name):
+    try:
+        # 1. Get current date and time for the specified location
+        target_tz = pytz.timezone(timezone_name)
+        local_time = datetime.now(target_tz)
+        
+        # 2. Extract year and month for the calendar
+        year = local_time.year
+        month = local_time.month
+        
+        # 3. Print the localized Date and Time
+        print(f"--- Location: {timezone_name} ---")
+        print(f"Current Date: {local_time.strftime('%Y-%m-%d')}")
+        print(f"Current Time: {local_time.strftime('%H:%M:%S %Z')}")
+        print("-" * (len(timezone_name) + 18))
+        
+        # 4. Generate and display the monthly calendar
+        # Using calendar.month() function to get formatted string
+        month_calendar = calendar.month(year, month)
+        print(month_calendar)
+        
+    except pytz.exceptions.UnknownTimeZoneError:
+        print(f"Error: '{timezone_name}' is not a valid timezone.")
+
+# Example Usage: Change 'Asia/Kolkata' to your desired location
+# Common examples: 'US/Pacific', 'Europe/London', 'Australia/Sydney'
+display_calendar_and_time('Asia/Kolkata')
