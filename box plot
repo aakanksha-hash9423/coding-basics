@@ -1,0 +1,11 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load a sample dataset
+df = sns.load_dataset('tips')
+
+# Create a box plot grouping 'total_bill' by 'day'
+sns.boxplot(data=df, x='day', y='total_bill', palette='Set2')
+
+plt.title('Total Bill Distribution by Day')
+plt.show()
