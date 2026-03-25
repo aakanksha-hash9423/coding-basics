@@ -1,0 +1,24 @@
+import boto3
+
+s3 = boto3.client('s3')
+
+# Define a lifecycle policy to archive objects after 30 days and delete after 365
+lifecycle_policy = {
+    'Rules': [
+        {
+            'ID': 'MoveToArchiveAndDelete',
+            'Status': 'Enabled',
+            'Filter': {'Prefix': 'logs/'},  # Apply to logs folder
+            'Transitions': [
+                {'Days': 30, 'StorageClass': 'GLACIER'}
+            ],
+            'Expiration': {'Days': 365}
+        }
+    ]
+}
+
+# Apply the configuration to a specific bucket
+s3.put_bucket_lifecycle_configuration(
+    Bucket='my-example-bucket',
+    LifecycleConfiguration=lifecycle_policy
+)
