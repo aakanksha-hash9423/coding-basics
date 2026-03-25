@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 1. Loading Data (Example from CSV)
+# Use pd.read_csv() or pd.read_excel() for common file types
+df = pd.read_csv('your_data.csv') 
+
+# 2. Exploratory Data Analysis (EDA)
+print(df.head())           # Show first 5 rows
+print(df.info())           # Column types and non-null counts
+print(df.describe())       # Summary statistics (mean, std, min, max, etc.)
+
+# 3. Data Cleaning
+df.dropna(inplace=True)    # Remove missing values
+df.drop_duplicates()       # Remove duplicate entries
+
+# 4. Data Transformation
+# Grouping and calculating average by a specific column
+grouped_data = df.groupby('Category')['Value'].mean()
+
+# 5. Data Visualization
+sns.histplot(df['Value'])  # Create a histogram
+plt.title('Distribution of Values')
+plt.show()
