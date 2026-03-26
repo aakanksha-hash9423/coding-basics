@@ -1,0 +1,53 @@
+import pandas as pd
+import sqlite3
+import requests
+from datetime import datetime
+
+# --- CONFIGURATION ---
+DB_NAME = "data_warehouse.db"
+API_URL = "https://jsonplaceholder.typicode.com" # Example source
+
+def extract_data():
+    """Extract data from an API or CSV file."""
+    print("Extracting data...")
+    response = requests.get(API_URL)
+    data = response.json()
+    return pd.DataFrame(data)
+
+def transform_data(df):
+    """Clean and transform raw data for downstream use."""
+    print("Transforming data...")
+    # 1. Select specific columns
+    df = df[['id', 'name', 'email', 'company']]
+    
+    # 2. Extract nested data (example: company name)
+    df['company_name'] = df['company'].apply(lambda x: x['name'])
+    df.drop(columns=['company'], inplace=True)
+    
+    # 3. Add metadata for auditing
+    df['ingested_at'] = datetime.now()
+    
+    # 4. Filter or clean (e.g., lowercase emails)
+    df['email'] = df['email'].str.lower()
+    return df
+
+def load_data(df):
+    """Load transformed data into a SQLite database."""
+    print(f"Loading data into {DB_NAME}...")
+    conn = sqlite3.connect(DB_NAME)
+    # Use to_sql to write the dataframe to a table
+    df.to_sql('users', conn, if_exists='replace', index=False)
+    conn.close()
+    print("Data Load Successful!")
+
+def run_pipeline():
+    """Main execution function."""
+    try:
+        raw_df = extract_data()
+        clean_df = transform_data(raw_df)
+        load_data(clean_df)
+    except Exception as e:
+        print(f"Pipeline failed: {e}")
+
+if __name__ == "__main__":
+    run_pipeline()
