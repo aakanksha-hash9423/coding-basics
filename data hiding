@@ -1,0 +1,34 @@
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner          # Public attribute
+        self.__balance = balance    # Private attribute (Data Hiding)
+
+    # Getter method to safely access hidden data
+    def get_balance(self):
+        return f"Current balance for {self.owner}: ${self.__balance}"
+
+    # Setter method to safely modify hidden data with validation
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Deposited ${amount}. New balance: ${self.__balance}")
+        else:
+            print("Deposit amount must be positive.")
+
+# Usage
+account = BankAccount("Alice", 1000)
+
+# 1. Accessing public data (Works)
+print(account.owner)  
+
+# 2. Accessing private data directly (Fails)
+try:
+    print(account.__balance)
+except AttributeError as e:
+    print(f"Error: {e}")  # Output: 'BankAccount' object has no attribute '__balance'
+
+# 3. Accessing via official interface (Works)
+print(account.get_balance())
+
+# 4. Modifying via official interface (Works)
+account.deposit(500)
