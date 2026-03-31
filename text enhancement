@@ -1,0 +1,11 @@
+# Required: pip install nlpaug
+import nlpaug.augmenter.word as naw
+
+text = "The quick brown fox jumps over the lazy dog."
+
+# Enhance via Synonym Replacement
+aug = naw.SynonymAug(aug_src='wordnet')
+enhanced_text = aug.augment(text)
+
+print(f"Original: {text}")
+print(f"Enhanced: {enhanced_text}")
