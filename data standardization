@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.impute import SimpleImputer
+
+# 1. Create Sample Data (Simulating a large dataset)
+data = {
+    'Age': [25, 30, np.nan, 35, 100],
+    'Salary': [50000, 60000, 120000, np.nan, 2000000],
+    'Department': ['IT', 'HR', 'IT', 'Marketing', 'IT']
+}
+df = pd.DataFrame(data)
+print("Original Data:")
+print(df)
+
+# 2. Handle Missing Values (Imputation)
+# Using mean for numerical columns to keep data standardized
+imputer = SimpleImputer(strategy='mean')
+numerical_cols = ['Age', 'Salary']
+df[numerical_cols] = imputer.fit_transform(df[numerical_cols])
+
+# 3. Standardization (Z-score Scaling: mean=0, std=1)
+# StandardScaler removes the mean and scales to unit variance [2, 8]
+scaler = StandardScaler()
+df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
+
+# 4. Handle Categorical Data (Optional - One Hot Encoding)
+df = pd.get_dummies(df, columns=['Department'])
+
+print("\nStandardized and Preprocessed Data:")
+print(df)
