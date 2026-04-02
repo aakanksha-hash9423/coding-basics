@@ -1,0 +1,30 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
+
+# 1. Create a sample dataset with different scales and an outlier
+data = {
+    'Age': [25, 30, 35, 40, 45],
+    'Salary': [50000, 60000, 70000, 80000, 300000],  # 300k is an outlier
+    'Experience': [2, 5, 8, 11, 15]
+}
+df = pd.DataFrame(data)
+print("Original Data:\n", df, "\n")
+
+# --- METHOD 1: Min-Max Scaling (Normalizes to range [0, 1]) ---
+# Best when you know the bounds and there are no extreme outliers.
+min_max_scaler = MinMaxScaler()
+df_min_max = pd.DataFrame(min_max_scaler.fit_transform(df), columns=df.columns)
+print("Min-Max Normalized Data (0 to 1):\n", df_min_max, "\n")
+
+# --- METHOD 2: Standardization / Z-Score (Mean=0, StdDev=1) ---
+# Best for algorithms assuming Gaussian distribution (e.g., Linear Regression).
+std_scaler = StandardScaler()
+df_std = pd.DataFrame(std_scaler.fit_transform(df), columns=df.columns)
+print("Standardized Data (Z-Score):\n", df_std, "\n")
+
+# --- METHOD 3: Robust Scaling (Uses Median and IQR) ---
+# Best when your data contains significant outliers.
+robust_scaler = RobustScaler()
+df_robust = pd.DataFrame(robust_scaler.fit_transform(df), columns=df.columns)
+print("Robust Scaled Data (Outlier Resistant):\n", df_robust)
