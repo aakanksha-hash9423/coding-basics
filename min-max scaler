@@ -1,0 +1,19 @@
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
+# 1. Prepare sample data (rows = samples, columns = features)
+data = np.array([[10, 2], [50, 8], [100, 15], [30, 5]])
+
+# 2. Initialize the scaler
+# Default range is [0, 1], but can be changed (e.g., feature_range=(-1, 1))
+scaler = MinMaxScaler()
+
+# 3. Fit and transform the data
+scaled_data = scaler.fit_transform(data)
+
+print("Original Data:\n", data)
+print("\nScaled Data (0 to 1 range):\n", scaled_data)
+
+# You can also see the min/max values learned by the scaler
+print(f"\nLearned Min: {scaler.data_min_}")
+print(f"Learned Max: {scaler.data_max_}")
