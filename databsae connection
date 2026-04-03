@@ -1,0 +1,14 @@
+import sqlite3
+
+# Connect to a database file (creates it if it doesn't exist)
+conn = sqlite3.connect('my_database.db')
+
+# Create a cursor object to execute SQL commands
+cursor = conn.cursor()
+
+# Execute a query
+cursor.execute("SELECT sqlite_version();")
+print("Database Version:", cursor.fetchone())
+
+# Close the connection
+conn.close()
