@@ -1,0 +1,19 @@
+import mysql.connector
+
+try:
+    # Establish connection
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="your_username",
+        password="your_password",
+        database="your_database_name"
+    )
+
+    if mydb.is_connected():
+        print("Connected to MySQL database")
+        
+except mysql.connector.Error as err:
+    print(f"Error: {err}")
+finally:
+    if 'mydb' in locals() and mydb.is_connected():
+        mydb.close() # Close connection
